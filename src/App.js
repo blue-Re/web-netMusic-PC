@@ -1,8 +1,21 @@
-import React from 'react'
-import './assets/css/reset.css'
+import React, { memo } from 'react'
+import { renderRoutes } from 'react-router-config'
+import { HashRouter } from 'react-router-dom'
 
-export default function App() {
+import routes from './router'
+
+import AppFooter from './components/app-footer'
+import AppHeader from './components/app-header'
+
+
+const App = memo(() => {
   return (
-    <div>App</div>
+    <HashRouter>
+      <AppHeader />
+      { renderRoutes(routes) }
+      <AppFooter />
+    </HashRouter>
   )
-}
+})
+
+export default App
