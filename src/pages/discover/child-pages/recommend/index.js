@@ -1,7 +1,16 @@
 import React, { memo } from 'react'
-import { RecommendWrapper } from './style';
+
+import {
+  Content,
+  RecommendLeft,
+  RecommendRight,
+  RecommendWrapper
+} from './style';
 
 import TopBanner from './components/top-banner/index';
+import HotRecommend from './components/hot-recommend';
+import NewAlbum from './components/new-album';
+import Ranking from './components/ranking';
 
 
 const Recommend = memo((props) => {
@@ -9,6 +18,16 @@ const Recommend = memo((props) => {
   return (
     <RecommendWrapper>
       <TopBanner />
+      <Content className='wrap-v2'>
+        <RecommendLeft>
+          <HotRecommend />
+          <NewAlbum />
+          <Ranking />
+        </RecommendLeft>
+        <RecommendRight>
+
+        </RecommendRight>
+      </Content>
     </RecommendWrapper>
   )
 })
