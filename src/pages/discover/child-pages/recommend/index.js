@@ -1,5 +1,5 @@
 import React, { memo, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 
 import { getTopBannersAction } from './store/actions';
 
@@ -8,10 +8,11 @@ const Recommend = memo((props) => {
 
   // 组件和redux关联，获取数据进行操作
   const { topBanners } = useSelector(state => ({
-    topBanners: state.recommend.topBanners
-  }))
+    topBanners: state.getIn(['recommend', 'topBanners'])
+  }), shallowEqual)
   const dispatch = useDispatch()
-
+  console.log(topBanners)
+  
   useEffect(() => {
     dispatch(getTopBannersAction())
 
