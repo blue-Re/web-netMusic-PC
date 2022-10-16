@@ -1,8 +1,11 @@
 import React, { memo } from 'react'
 
-const Ranking = memo(() => {
+const Ranking = memo((props) => {
+  
   return (
-    <div>Ranking</div>
+    <div>
+      123
+    </div>
   )
 })
 

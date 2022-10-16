@@ -18,7 +18,6 @@ const HotRecommend = memo(() => {
     hotRecommend: state.getIn(['recommend', 'hotRecommend'])
   }))
   const dispatch = useDispatch()
-  console.log(hotRecommend);
 
   useEffect(() => {
     dispatch(getHotRecommendAction(HOT_RECOMMEND_LIMIT))
