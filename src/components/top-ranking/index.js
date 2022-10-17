@@ -6,7 +6,7 @@ import { TopRankingWrapper } from './style';
 
 const TopRanking = memo((props) => {
 
-  const { info } = props
+  const { info, info: { tracks = [] } = {} } = props
 
   return (
     <TopRankingWrapper>
@@ -26,7 +26,7 @@ const TopRanking = memo((props) => {
 
       <div className='list'>
         {
-          info.tracks.slice(0, 10).map((item, index) => {
+          tracks.slice(0, 10).map((item, index) => {
             return (
               <div className='list-item' key={item.id}>
                 <div className='rank'>{index + 1}</div>
