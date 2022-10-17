@@ -11,6 +11,9 @@ import TopBanner from './components/top-banner/index';
 import HotRecommend from './components/hot-recommend';
 import NewAlbum from './components/new-album';
 import Ranking from './components/ranking';
+import UserLogin from './components/user-login/index';
+import SettleSinger from './components/settle-singer/index';
+import HotAnchor from './components/hot-anchor/index';
 
 
 const Recommend = memo((props) => {
@@ -25,7 +28,9 @@ const Recommend = memo((props) => {
           <Ranking />
         </RecommendLeft>
         <RecommendRight>
-
+          <UserLogin />
+          <SettleSinger />
+          <HotAnchor />
         </RecommendRight>
       </Content>
     </RecommendWrapper>
