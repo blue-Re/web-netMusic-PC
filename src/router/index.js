@@ -11,6 +11,7 @@ import Artist from './../pages/discover/child-pages/artist/index';
 
 import Mine from "../pages/mine"
 import Friend from "../pages/friend"
+import Player from './../pages/player/index';
 
 
 
@@ -52,6 +53,10 @@ const routes = [
       {
         path: '/discover/artist',
         component: Artist
+      },
+      {
+        path: '/discover/player',
+        component: Player
       }
     ]
   },

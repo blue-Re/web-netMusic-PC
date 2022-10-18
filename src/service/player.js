@@ -7,3 +7,11 @@ export function getSongDetail(ids) {
     }
   })
 }
+
+export function getSongLyric(id) {
+  return http.get('/lyric', {
+    params: {
+      id
+    }
+  })
+}
