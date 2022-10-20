@@ -1,10 +1,10 @@
-import { Slider } from 'antd';
+import { message, Slider } from 'antd';
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 
 import { formatDate, getPlaySong, getSizeImage } from '../../../utils/format-utils'
 
-import { changeSequenceAction, getSongDetailAction, changeCurrentIndexAndSongAction } from '../store/actions';
+import { changeSequenceAction, getSongDetailAction, changeCurrentIndexAndSongAction, changeCurrentLyricIndexAction } from '../store/actions';
 
 import { PlaybarWrapper, Control, PlayInfo, Operator } from './style';
 
@@ -15,9 +15,16 @@ const PlayerBar = memo(() => {
   const [isChanging, setIsChanging] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
 
-  const { currentSong = {}, sequence } = useSelector(state => ({
+  const {
+    currentSong = {},
+    sequence,
+    lyricList,
+    currentLyricIndex
+  } = useSelector(state => ({
     currentSong: state.getIn(['play', 'currentSong']),
-    sequence: state.getIn(['play', 'sequence'])
+    sequence: state.getIn(['play', 'sequence']),
+    lyricList: state.getIn(['play', 'lyricList']),
+    currentLyricIndex: state.getIn(['play', 'currentLyricIndex'])
   }), shallowEqual)
   const dispatch = useDispatch()
 
@@ -65,9 +72,29 @@ const PlayerBar = memo(() => {
   }, [isPlaying]);
 
   const timeUpdate = (event) => {
+    const currentTime = event.target.currentTime
     if (!isChanging) {
-      setCurrentTime(event.target.currentTime * 1000)
-      setProgress(currentTime / duration * 100)
+      setCurrentTime(currentTime * 1000)
+      setProgress(currentTime * 1000 / duration * 100)
+    }
+
+    // 获取当前的歌词
+    let i = 0;
+    for (; i < lyricList.length; i++) {
+      let lyricItem = lyricList[i];
+      if (currentTime * 1000 < lyricItem.time) {
+        break;
+      }
+    }
+    if (currentLyricIndex !== i - 1) {
+      dispatch(changeCurrentLyricIndexAction(i - 1))
+      const content = lyricList[i - 1] && lyricList[i - 1].content
+      message.open({
+        key: 'lyric',
+        content: content,
+        duration: 0,
+        className: 'lyric-class'
+      })
     }
   }
 
@@ -146,7 +173,7 @@ const PlayerBar = memo(() => {
           </div>
         </Operator>
       </div>
-      <audio ref={audioRef} onTimeUpdate={timeUpdate} onEnded={handleEnded}/>
+      <audio ref={audioRef} onTimeUpdate={timeUpdate} onEnded={handleEnded} />
     </PlaybarWrapper>
   )
 })

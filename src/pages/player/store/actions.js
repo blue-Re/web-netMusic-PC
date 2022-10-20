@@ -103,3 +103,8 @@ export const getLyricAction = (id) => {
     dispatch(changeLyricListAction(lyricList))
   }
 };
+
+export const changeCurrentLyricIndexAction = (index) => ({
+  type: actionTypes.CHANGE_CURRENT_LYRIC_INDEX,
+  index
+})
