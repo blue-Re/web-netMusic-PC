@@ -64,7 +64,7 @@ export const changeCurrentIndexAndSongAction = (tag) => {
 
     switch (sequence) {
       case 1: // 随机播放
-        let randomIndex = -1
+        let randomIndex = getRandomNumber(playList.length)
         while (randomIndex === currentSongIndex) {
           randomIndex = getRandomNumber(playList.length)
         }
