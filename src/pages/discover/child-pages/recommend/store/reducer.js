@@ -9,7 +9,10 @@ const defaultStore = Map({
 
   upRanking: {},
   newRanking: {},
-  originRanking: {}
+  originRanking: {},
+
+  settleSingers: [],
+  hotAnchor: []
 })
 
 function reducer(state = defaultStore, action) {
@@ -31,6 +34,12 @@ function reducer(state = defaultStore, action) {
 
     case actionTypes.CHANGE_ORIGIN_RANKING:
       return state.set('originRanking', action.originRanking)
+
+    case actionTypes.CHANGE_SETTLE_SINGERS:
+      return state.set('settleSingers', action.settleSingers)
+
+    case actionTypes.CHANGE_HOT_ANCHOR:
+      return state.set('hotAnchor', action.hotAnchor)
     default:
       return state
   }

@@ -4,3 +4,6 @@ export const CHANGE_NEW_ALBUMS = 'recommend/CHANGE_NEW_ALBUMS'
 export const CHANGE_UP_RANKING = 'recommend/CHANGE_UP_RANKING'
 export const CHANGE_NEW_RANKING = 'recommend/CHANGE_NEW_RANKING'
 export const CHANGE_ORIGIN_RANKING = 'recommend/CHANGE_ORIGIN_RANKING'
+
+export const CHANGE_SETTLE_SINGERS = 'recommend/CHANGE_SETTLE_SINGERS'
+export const CHANGE_HOT_ANCHOR = 'recommend/CHANGE_HOT_ANCHOR'

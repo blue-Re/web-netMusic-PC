@@ -1,6 +1,6 @@
 import * as actionTypes from './constants'
 
-import { getHotRecommends, getNewAlbums, getTopBanners, getTopList } from '../../../../../service/recommend'
+import { getHotAnchor, getHotRecommends, getNewAlbums, getSettleSingers, getTopBanners, getTopList } from '../../../../../service/recommend'
 
 const changeTopBannersAction = (result) => ({
   type: actionTypes.CHANGE_TOP_BANNERS,
@@ -63,5 +63,27 @@ export const getTopListAction = (id) => {
       default:
         break;
     }
+  }
+};
+
+const changeSettleSingersAction = (result) => ({
+  type: actionTypes.CHANGE_SETTLE_SINGERS,
+  settleSingers: result.artists
+})
+export const getSettleSingersAction = () => {
+  return async dispatch => {
+    const result = await getSettleSingers();
+    dispatch(changeSettleSingersAction(result))
+  }
+};
+
+const changeHotAnchorAction = (result) => ({
+  type: actionTypes.CHANGE_HOT_ANCHOR,
+  hotAnchor: result.djRadios
+})
+export const getHotAnchorAction = () => {
+  return async dispatch => {
+    const result = await getHotAnchor()
+    dispatch(changeHotAnchorAction(result))
   }
 };
