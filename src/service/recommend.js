@@ -28,14 +28,6 @@ export function getTopList(id) {
   })
 }
 
-/**
- * 
- * @params
- * 1 华语
- * 2 欧美
- * 3 韩国
- * 4 日本
- */
 export function getSettleSingers() {
   return http.get('/top/artists', {
     params: {
