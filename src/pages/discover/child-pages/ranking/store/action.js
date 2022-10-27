@@ -1,5 +1,5 @@
 
-import { getPlayListAllSongs, getTopListDetail } from './../../../../../service/ranking';
+import { getCommentList, getPlayListAllSongs, getTopListDetail } from './../../../../../service/ranking';
 import * as actionTypes from './constant'
 
 const changeTopListDetailAction = (result) => ({
@@ -21,5 +21,16 @@ export const getPlayListAllSongsAction = (id) => {
   return async dispatch => {
     const result = await getPlayListAllSongs(id)
     dispatch(changePlayListAllSongsAction(result))
+  }
+};
+
+const changeCommentInfoAction = (result) => ({
+  type: actionTypes.CHANGE_COMMENT_INFO,
+  commentInfo: result
+});
+export const getCommentInfoAction = (id) => {
+  return async dispatch => {
+    const result = await getCommentList(id)
+    dispatch(changeCommentInfoAction(result))
   }
 };

@@ -23,3 +23,12 @@ export function getPlayListAllSongs(id) {
     }
   })
 }
+
+// 获取歌单评论
+export function getCommentList(id) {
+  return http.get('/comment/playlist', {
+    params: {
+      id
+    }
+  }) 
+}

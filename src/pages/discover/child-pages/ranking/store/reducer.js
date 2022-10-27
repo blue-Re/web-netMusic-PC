@@ -3,7 +3,8 @@ import * as actionTypes from './constant'
 
 const defaultStore = Map({
   topListDetail: [],
-  playListAllSongs: []
+  playListAllSongs: [],
+  commentInfo: []
 })
 function reducer(state = defaultStore, action) {
   switch (action.type) {
@@ -13,6 +14,8 @@ function reducer(state = defaultStore, action) {
     case actionTypes.CHANGE_PLAY_LIST_ALL_SONGS:
       return state.set('playListAllSongs', action.playListAllSongs)
 
+    case actionTypes.CHANGE_COMMENT_INFO:
+      return state.set('commentInfo', action.commentInfo)  
     default:
       return state;
   }

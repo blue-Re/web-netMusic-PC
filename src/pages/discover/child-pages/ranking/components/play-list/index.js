@@ -1,13 +1,22 @@
 import { Button, Table } from 'antd'
 import React, { memo, useEffect } from 'react'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
-import { getPlayListAllSongsAction } from '../../store/action';
-import { PlayListAllSongsWrapper } from './style'
-import { formatMinuteSecond, formatMonthDay } from './../../../../../../utils/format-utils';
 
+import { getPlayListAllSongsAction } from '../../store/action';
+import { formatMinuteSecond, formatMonthDay } from './../../../../../../utils/format-utils';
+import { getSongDetailAction } from '../../../../../player/store';
+
+import CommentList from '../comment-list';
+
+import { PlayListAllSongsWrapper } from './style'
 
 const PlayListAllSong = memo((props) => {
   const { currentSongListId } = props
+
+  const playMusic = (item) => {
+    dispatch(getSongDetailAction(item.id))  
+  }
+
   const columns = [
     {
       title: '',
@@ -21,6 +30,19 @@ const PlayListAllSong = memo((props) => {
       title: '标题',
       dataIndex: 'name',
       key: 'name',
+      width: 400,
+      render: (text, record, index) => {
+        return (
+          <div className='table-title'>
+            <div>{record.name}</div>
+            <div className='operate'>
+              <button className='btn sprite_02 play' onClick={e => playMusic(record)}></button>
+              <button className='btn sprite_icon2 addto'></button>
+              <button className='btn sprite_02 favor'></button>
+            </div>
+          </div>
+        )
+      }
     },
     {
       title: '时长',
@@ -89,8 +111,9 @@ const PlayListAllSong = memo((props) => {
         columns={columns}
         rowKey={record => record.id}
         bordered
-        loading={playListAllSongs.length}
       />;
+
+      <CommentList currentSongListId={currentSongListId} />
     </PlayListAllSongsWrapper>
   )
 })
